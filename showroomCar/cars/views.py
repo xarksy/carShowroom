@@ -8,9 +8,11 @@ def carList(request):
     """
     View to display the list of cars in the showroom.
     """
-    
+    context = {
+        'cars': Cars.objects.all()  # Fetch all car objects from the database
+    }
     # Render the template with the list of cars
-    return render(request, 'cars/index.html')
+    return render(request, 'cars/index.html', context)
 
 def carDetail(request, car_id):
     pass
