@@ -41,8 +41,18 @@ def create_car(request):
     return render(request, 'cars/car_form.html', context=context)
 
 
-def carDetail(request, car_id):
-    pass
+def detail_car(request, car_id):
+    """
+    View to display the details of a specific car.
+    """
+    # Fetch the car object using the provided car_id
+    car = get_object_or_404(Cars, id=car_id)
+    context = {
+        'car': car  # Pass the car object to the template for rendering
+    }
+    # Render the template with the car details
+    return render(request, 'cars/detail.html', context)
+
 
 def updateCar(request, car_id):
     pass
