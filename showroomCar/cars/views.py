@@ -20,12 +20,25 @@ def create_car(request):
     View to create a new car entry in the showroom.
     """
     if request.method == 'POST':
+        form = CarsForm(request.POST, request.FILES)
+        if form.is_valid():
+            # Save the new car instance to the database
+            form.save()
+            # Redirect to the car list page after successful creation
+            return redirect('carList')
+        else:
+            # Log the form errors for debugging purposes
+            logger.error("Form submission failed: %s", form.errors)
         # Handle form submission
         pass  # Implement form handling logic here
     else:
+        form = CarsForm()
+
+    context = {
+        'form': form  # Pass the form to the template for rendering
+    }
         # Render the form for creating a new car
-        pass  # Implement form rendering logic here
-    return render(request, 'cars/car_form.html')
+    return render(request, 'cars/car_form.html', context=context)
 
 
 def carDetail(request, car_id):
