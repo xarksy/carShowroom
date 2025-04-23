@@ -34,7 +34,9 @@
                     <a href="{% url 'detail_car' car.id %}" class="text-decoration-none text-dark" style="font-weight: normal; text-decoration: none;">                
                 <div class="row no-gutters">
                     <div class="col-md-4">
-                    <img src="{{ car.image.url }}" class="card-img" alt="{{ car.name }}">
+                    {% comment %} <img src="{{ car.image.url }}" class="card-img" alt="{{ car.name }}"> {% endcomment %}
+                    <img src='https://images.freeimages.com/images/large-previews/a25/japanes-car-1449114.jpg?fmt=webp&w=500' class="card-img" alt="{{ car.name }}">
+
                     </div>
                     <div class="col-md-8">
                     <div class="card-body">

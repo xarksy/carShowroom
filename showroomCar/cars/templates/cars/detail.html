@@ -32,7 +32,9 @@
             <strong>Deskripsi:</strong> {{ car.deskripsi }}
         </div>
         <div class="mb-3">
-            <img src="{{ car.image.url }}" alt="{{ car.name }}" style="max-width: 300px; max-height: 300px;">
+            {% comment %} <img src="{{ car.image.url }}" alt="{{ car.name }}" style="max-width: 300px; max-height: 300px;"> {% endcomment %}
+            <img src="https://images.freeimages.com/images/large-previews/a25/japanes-car-1449114.jpg?fmt=webp&w=500" alt="{{ car.name }}" style="max-width: 300px; max-height: 300px;">
+
         </div>
 
         <a href="{% url 'carList' %}" class="btn btn-secondary">Kembali</a>
