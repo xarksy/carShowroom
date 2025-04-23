@@ -30,7 +30,8 @@
                     <form method="POST" action="{% url 'delete_car' car.id %}" style="display: inline-block;">
                         {% csrf_token %}
                         <button type="submit" onclick="return confirm('Yakin ingin menghapus mobil ini?')" class="btn btn-danger">Hapus</button>
-                    </form>
+                    </form>                    
+                    <a href="{% url 'service_history' car.id%}" class="btn btn-warning mt-1">Tambah data Servis</a>
                 </div>
             </div>
 
@@ -99,7 +100,7 @@
                 </div>
                 <a href="{% url 'carList' %}" class="btn btn-secondary">Kembali</a>
                 <a href="{% url 'carList' %}" class="btn btn-secondary">Simulasi Kredit</a>
-                <a href="{% url 'service_history' car.id%}" class="btn btn-secondary">Tambah data Servis</a>
+                
             </div>
         </div>
     </div>
