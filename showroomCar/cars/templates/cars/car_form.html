@@ -37,7 +37,9 @@
             {% endfor %}
             <div class="mb-3">
                 <button type="submit" class="btn btn-primary">Simpan</button>
+                {% block tombol_kembali %}
                 <a href="{% url 'carList' %}" class="btn btn-secondary">Kembali</a>
+                {% endblock tombol_kembali %}
             </div>
         </form>
         {% endblock content_form %}            
