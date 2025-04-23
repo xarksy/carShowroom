@@ -35,11 +35,11 @@
         </div>
 
         <div class="mb-3">
-            <strong>Harga Dasar:</strong> {{ car.harga }}
+            <strong>Harga Dasar:</strong> <span id="harga-dasar">{{ car.harga }}</span>
         </div>
 
         <div class="mb-3">
-            <strong>Total Biaya Servis:</strong> {{ total_biaya }}
+            <strong>Total Biaya Servis:</strong> <span id="total_biaya">{{ total_biaya }}</span>
         </div>
 
         <div class="mb-3">
@@ -96,7 +96,6 @@
                 <button type="submit" class="btn btn-primary" id="hitung">Hitung Angsuran</button>
                 <button type="reset" class="btn btn-secondary" id="reset_hitungan">Reset</button>
         </div>
-
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
@@ -109,6 +108,7 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
             crossorigin="anonymous"></script>
 
+    
     <script src="{% static "cars/js/hpp_bank.js" %}"></script>
 </body>
 </html>
