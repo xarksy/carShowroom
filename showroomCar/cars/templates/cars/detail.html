@@ -1,3 +1,4 @@
+{% load humanize %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,6 +32,19 @@
         <div class="mb-3">
             <strong>Deskripsi:</strong> {{ car.deskripsi }}
         </div>
+
+        <div class="mb-3">
+            <strong>Harga Dasar:</strong> {{ car.harga }}
+        </div>
+
+        <div class="mb-3">
+            <strong>Total Biaya Servis:</strong> {{ total_biaya }}
+        </div>
+
+        <div class="mb-3">
+            <strong>Cash:</strong> Rp{{ cash|floatformat:0|intcomma }}
+        </div>
+
         <div class="mb-3">
             {% comment %} <img src="{{ car.image.url }}" alt="{{ car.name }}" style="max-width: 300px; max-height: 300px;"> {% endcomment %}
             <img src="https://images.freeimages.com/images/large-previews/a25/japanes-car-1449114.jpg?fmt=webp&w=500" alt="{{ car.name }}" style="max-width: 300px; max-height: 300px;">
@@ -49,7 +63,7 @@
             {% for service in service_history %}
                 <strong>Tanggal Servis:</strong> {{ service.tanggal_service }}<br>
                 <strong>Jenis Servis:</strong> {{ service.deskripsi }}<br>
-                <strong>Biaya Servis:</strong> {{ service.biaya }}<br>
+                <strong>Biaya Servis:</strong> {{ service.biaya }}<br>                
                 <hr>
             {% endfor %}
             
