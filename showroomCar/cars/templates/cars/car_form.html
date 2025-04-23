@@ -27,7 +27,13 @@
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %} {{ form.non_field_errors }}
             {% for field in form  %}
-            <div class="mb-3">{{field.label}} {{field}}</div>
+            {% if not field.is_hidden %}
+                <div class="mb-3">
+                    {{ field.label }} {{ field }}
+                </div>
+            {% else %}
+                {{ field }}  {# hidden input only #}
+            {% endif %}
             {% endfor %}
             <div class="mb-3">
                 <button type="submit" class="btn btn-primary">Simpan</button>
