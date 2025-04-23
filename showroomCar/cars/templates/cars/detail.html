@@ -1,3 +1,4 @@
+{%load static%}
 {% load humanize %}
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +43,7 @@
         </div>
 
         <div class="mb-3">
-            <strong>Cash:</strong> Rp{{ cash|floatformat:0|intcomma }}
+            <strong>HPP:</strong> Rp{{ cash|floatformat:0|intcomma }}
         </div>
 
         <div class="mb-3">
@@ -77,6 +78,25 @@
             {% csrf_token %}
             <button type="submit" onclick="return confirm('Yakin ingin menghapus mobil ini?')" class="btn btn-danger">Hapus</button>
         </form>
+
+        <div class="mb-3" id='credit_simulation'>        
+            <h2>Simulasi Kredit</h2>
+                <div class="mb-3">
+                    <label for="cash">Uang Muka:</label>
+                    <input type="number" name="cash" id="cash" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="tenor">Tenor (bulan):</label>
+                    <input type="number" name="tenor" id="tenor" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="interest">Bunga (% per tahun):</label>
+                    <input type="number" name="interest" id="interest" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary" id="hitung">Hitung Angsuran</button>
+                <button type="reset" class="btn btn-secondary" id="reset_hitungan">Reset</button>
+        </div>
+
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
@@ -88,5 +108,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" 
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
             crossorigin="anonymous"></script>
+
+    <script src="{% static "cars/js/hpp_bank.js" %}"></script>
 </body>
 </html>
