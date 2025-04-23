@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import carList, create_car, detail_car,deleteCar, updateCar
+from .views import carList, create_car, detail_car,deleteCar, updateCar, car_service
 
 urlpatterns = [
     path('',carList,name='carList'),
@@ -7,4 +7,5 @@ urlpatterns = [
     path('detail/<int:car_id>/', detail_car, name='detail_car'),
     path('delete/<int:car_id>/', deleteCar, name='delete_car'),
     path('update/<int:car_id>/', updateCar, name='update_car'),
+    path('service/<int:car_id>/', car_service, name='car_service'),
 ]

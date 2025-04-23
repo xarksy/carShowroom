@@ -21,3 +21,10 @@ class CarsForm(forms.ModelForm):
                 raise ValidationError("Harga harus lebih dari 0.")
             return harga
  
+class ServiceHistoryForm (forms.ModelForm):
+    """
+    Form for creating and updating ServiceHistory instances.
+    """
+    class Meta:
+        model = ServiceHistory
+        fields = ['tanggal_servis', 'jenis_servis', 'keterangan']
