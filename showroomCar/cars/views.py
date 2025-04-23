@@ -55,7 +55,29 @@ def detail_car(request, car_id):
 
 
 def updateCar(request, car_id):
-    pass
+    """
+    View to update the details of a specific car.
+    """
+    # Fetch the car object using the provided car_id
+    car = get_object_or_404(Cars, id=car_id)
+    if request.method == 'POST':
+        form = CarsForm(request.POST, request.FILES, instance=car)
+        if form.is_valid():
+            # Save the updated car instance to the database
+            form.save()
+            # Redirect to the car list page after successful update
+            return redirect('carList')
+        else:
+            # Log the form errors for debugging purposes
+            logger.error("Form submission failed: %s", form.errors)
+    else:
+        form = CarsForm(instance=car)
+
+    context = {
+        'form': form  # Pass the form to the template for rendering
+    }
+    # Render the form for updating the car details
+    return render(request, 'cars/car_form.html', context=context)
 
 def deleteCar(request, car_id):
     car = get_object_or_404(Cars, id=car_id)

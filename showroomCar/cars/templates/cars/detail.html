@@ -31,11 +31,18 @@
         <div class="mb-3">
             <strong>Deskripsi:</strong> {{ car.deskripsi }}
         </div>
-        {% comment %} <div class="mb-3">
+        <div class="mb-3">
             <img src="{{ car.image.url }}" alt="{{ car.name }}" style="max-width: 300px; max-height: 300px;">
-        </div> {% endcomment %}
+        </div>
 
         <a href="{% url 'carList' %}" class="btn btn-secondary">Kembali</a>
+        <a href="{% url 'carList' %}" class="btn btn-secondary">Simulasi Kredit</a>
+        <a href="{% url 'carList' %}" class="btn btn-secondary">Tambah data Servis</a>
+        <a href="{% url 'update_car' car.id %}" class="btn btn-primary">Update data mobil</a>
+        <form method="POST" action="{% url 'delete_car' car.id %}" style="display: inline-block;">
+            {% csrf_token %}
+            <button type="submit" onclick="return confirm('Yakin ingin menghapus mobil ini?')" class="btn btn-danger">Hapus</button>
+        </form>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
