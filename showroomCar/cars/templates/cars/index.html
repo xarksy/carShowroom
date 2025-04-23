@@ -26,11 +26,16 @@
         <div class="row" id="car-container" data-view="list">
             {% for car in cars %}
             <div class="col-md-6 offset-md-3 mb-4 car-item list-view">
-                <a href="{% url 'delete_car' car.id %}" class="text-decoration-none text-dark" style="font-weight: normal; text-decoration: none;">
+               
                 <div class="card position-relative">
-                <button type="button" class="close position-absolute" style="top: 10px; right: 10px;" aria-label="Close" href="{% url 'delete_car' car.id %}">
+                    <form method="POST" action="{% url 'delete_car' car.id %}" style="position: absolute; top: 10px; right: 10px; z-index: 10;">
+                        {% csrf_token %}
+                        <button type="submit" onclick="return confirm('Yakin ingin menghapus mobil ini?')" class="btn btn-link text-danger p-0" style="font-size: 1.5rem;">&times;</button>
+                    </form>
+                    <a href="{% url 'detail_car' car.id %}" class="text-decoration-none text-dark" style="font-weight: normal; text-decoration: none;">
+                {% comment %} <button type="button" class="close position-absolute" style="top: 10px; right: 10px;" aria-label="Close" href="{% url 'delete_car' car.id %}">
                     <span aria-hidden="true">&times;</span>
-                </button>
+                </button> {% endcomment %}
                 <div class="row no-gutters">
                     <div class="col-md-4">
                     <img src="{{ car.image.url }}" class="card-img" alt="{{ car.name }}">
@@ -47,6 +52,10 @@
                 </div>
             </div>
             <div class="col-md-4 mb-4 car-item grid-view d-none">
+                <form method="POST" action="{% url 'delete_car' car.id %}" style="position: absolute; top: 10px; right: 10px; z-index: 10;">
+                    {% csrf_token %}
+                    <button type="submit" onclick="return confirm('Yakin ingin menghapus mobil ini?')" class="btn btn-link text-danger p-0" style="font-size: 1.5rem;">&times;</button>
+                </form>
                 <a href="{% url 'detail_car' car.id %}" class="text-decoration-none text-dark" style="font-weight: normal; text-decoration: none;">
                 <div class="card">
                 <img src="{{ car.image.url }}" class="card-img-top" alt="{{ car.name }}">
