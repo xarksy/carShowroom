@@ -22,6 +22,10 @@ class CarsForm(forms.ModelForm):
             return harga
  
 class ServiceHistoryForm (forms.ModelForm):
+    def __init__(self, *args, hide_car_field=False, **kwargs):
+        super().__init__(*args, **kwargs)
+        if hide_car_field:
+            self.fields['mobil'].widget = forms.HiddenInput()
     """
     Form for creating and updating ServiceHistory instances.
     """
