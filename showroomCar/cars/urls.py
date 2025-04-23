@@ -9,6 +9,4 @@ urlpatterns = [
     path('update/<int:car_id>/', updateCar, name='update_car'),
     path('service/', car_service_plain, name='car_service'),
     path('service/<int:car_id>/', car_service, name='service_history'),
-    path('service/<int:car_id>/delete/<int:service_id>/', car_service, name='delete_service_history'),
-    path('service/<int:car_id>/update/<int:service_id>/', car_service, name='update_service_history'),
 ]

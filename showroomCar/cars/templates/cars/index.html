@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,9 +40,11 @@
                     <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">{{ car.nama }}</h5>
-                        <p class="card-text">Harga: Rp.{{ car.harga }}</p>
-                        <p class="card-text">Tahun: {{ car.tahun }}</p>
-                        <p class="card-text">Model: {{ car.model }}</p>
+                        <p class="card-text mb-1">Id: {{ car.id }}</p>
+                        <p class="card-text mb-1">Merek: {{ car.merek }}</p>
+                        <p class="card-text mb-1">Model: {{ car.model }}</p>
+                        <p class="card-text mb-1">Tahun: {{ car.tahun }}</p>
+                        <p class="card-text mb-1">Harga: Rp.{{ car.harga|floatformat:0|intcomma }}</p>
                     </div>
                     </div>
                 </div>
