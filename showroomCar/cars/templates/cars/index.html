@@ -17,21 +17,86 @@
                 <h1>Car Showroom</h1>
             </div>
         </div>
-        <div class="row">
+        <div class="row mb-3">
+            <div class="col-md-12 text-right">
+            <button id="view-grid" class="btn btn-primary">Grid View</button>
+            <button id="view-list" class="btn btn-secondary">List View</button>
+            </div>
+        </div>
+        <div class="row" id="car-container" data-view="list">
             {% for car in cars %}
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="{{ car.image.url }}" class="card-img-top" alt="{{ car.name }}">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ car.nama }}</h5>
-                            <p class="card-text">Harga: Rp.{{ car.harga }}</p>
-                            <p class="card-text">Tahun: {{ car.tahun }}</p>
-                            <p class="card-text">Model: {{ car.model }}</p>
-                        </div>
+            <div class="col-md-6 offset-md-3 mb-4 car-item list-view">
+                <div class="card position-relative">
+                <button type="button" class="close position-absolute" style="top: 10px; right: 10px;" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                    <img src="{{ car.image.url }}" class="card-img" alt="{{ car.name }}">
+                    </div>
+                    <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ car.nama }}</h5>
+                        <p class="card-text">Harga: Rp.{{ car.harga }}</p>
+                        <p class="card-text">Tahun: {{ car.tahun }}</p>
+                        <p class="card-text">Model: {{ car.model }}</p>
+                    </div>
                     </div>
                 </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4 car-item grid-view d-none">
+                <div class="card">
+                <img src="{{ car.image.url }}" class="card-img-top" alt="{{ car.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ car.nama }}</h5>
+                    <p class="card-text">Harga: Rp.{{ car.harga }}</p>
+                    <p class="card-text">Tahun: {{ car.tahun }}</p>
+                    <p class="card-text">Model: {{ car.model }}</p>
+                </div>
+                </div>
+            </div>
             {% endfor %}
         </div>
+
+        <script>
+            document.getElementById('view-grid').addEventListener('click', function() {
+            document.getElementById('car-container').setAttribute('data-view', 'grid');
+            document.querySelectorAll('.car-item').forEach(function(item) {
+                item.classList.add('d-none');
+                if (item.classList.contains('grid-view')) {
+                item.classList.remove('d-none');
+                }
+            });
+            });
+
+            document.getElementById('view-list').addEventListener('click', function() {
+            document.getElementById('car-container').setAttribute('data-view', 'list');
+            document.querySelectorAll('.car-item').forEach(function(item) {
+                item.classList.add('d-none');
+                if (item.classList.contains('list-view')) {
+                item.classList.remove('d-none');
+                }
+            });
+            });
+
+            // Select the button using its class
+            const closeButton = document.querySelector('.close');
+
+            // Add a click event listener
+            closeButton.addEventListener('click', () => {
+                console.log('Close button clicked!');
+                // Add your logic here, e.g., hiding a modal or alert
+            });
+
+            // Close button functionality
+            document.querySelectorAll('.close').forEach(function(button) {
+                button.addEventListener('click', function() {
+                    const card = this.closest('.car-item');
+                    card.remove();
+                });
+            });
+        </script>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" 
@@ -43,5 +108,6 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" 
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 
             crossorigin="anonymous"></script>
+    
 </body>
 </html>
