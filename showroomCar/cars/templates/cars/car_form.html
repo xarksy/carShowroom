@@ -23,6 +23,7 @@
             </div>
         </div>
 
+        {% block content_form %}
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %} {{ form.non_field_errors }}
             {% for field in form  %}
@@ -31,7 +32,9 @@
             <div class="mb-3">
                 <button type="submit" class="btn btn-primary">Simpan</button>
                 <a href="{% url 'carList' %}" class="btn btn-secondary">Kembali</a>
-        </form>            
+            </div>
+        </form>
+        {% endblock content_form %}            
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 

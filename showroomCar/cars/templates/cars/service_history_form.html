@@ -8,3 +8,16 @@
 <h1>Service Mobil</h1>
 {% endblock title_body %}
 
+{% block content_form %}
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %} {{ form.non_field_errors }}
+    {% for field in form  %}
+    <div class="mb-3">{{field.label}} {{field}}</div>
+    {% endfor %}
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Simpan</button>
+        <a href="{% url 'carList' %}" class="btn btn-secondary">Kembali</a>
+    </div>
+</form>
+{% endblock content_form %}  
+

@@ -47,8 +47,10 @@ def detail_car(request, car_id):
     """
     # Fetch the car object using the provided car_id
     car = get_object_or_404(Cars, id=car_id)
+    service_history = car.service_histories.all()  # Fetch the service history entries for the car
     context = {
-        'car': car  # Pass the car object to the template for rendering
+        'car': car,  # Pass the car object to the template for rendering
+        'service_history': service_history  # Pass the service
     }
     # Render the template with the car details
     return render(request, 'cars/detail.html', context)
