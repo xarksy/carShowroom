@@ -27,4 +27,7 @@ class ServiceHistoryForm (forms.ModelForm):
     """
     class Meta:
         model = ServiceHistory
-        fields = ['tanggal_servis', 'jenis_servis', 'keterangan']
+        fields = ['id','mobil', 'tanggal_service', 'deskripsi', 'biaya']
+        widgets = {
+            'tanggal_service': forms.DateInput(attrs={'type': 'date'}),
+        }

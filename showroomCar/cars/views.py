@@ -103,7 +103,7 @@ def car_service(request, car_id):
 
     context = {
         'form': form,  # Pass the form to the template for rendering
-        'car': car  # Pass the car object to the template for rendering
+        # 'car': car  # Pass the car object to the template for rendering
     }
     # Render the form for managing service history
     return render(request, 'cars/service_history_form.html', context=context)
