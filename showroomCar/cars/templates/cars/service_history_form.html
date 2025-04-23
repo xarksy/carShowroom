@@ -5,7 +5,11 @@
 {% endblock title %}
 
 {% block title_body %}
-<h1>Service Mobil</h1>
+{%if car.nama %}
+    <h1>{{car.nama}} - Data Service Mobil</h1>
+{% else %}
+    <h1>Data Service Mobil</h1>
+{% endif %}
 {% endblock title_body %}
 
 
