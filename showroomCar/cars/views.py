@@ -58,4 +58,6 @@ def updateCar(request, car_id):
     pass
 
 def deleteCar(request, car_id):
-    pass
+    car = get_object_or_404(Cars, id=car_id)
+    car.delete()
+    return redirect('carList')
