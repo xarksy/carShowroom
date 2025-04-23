@@ -19,8 +19,6 @@
         </div>
         <div class="row mb-3">
             <div class="col-md-12 text-right">
-            <button id="view-grid" class="btn btn-primary">Grid View</button>
-            <button id="view-list" class="btn btn-secondary">List View</button>
             <a href="{% url 'create_car' %}" class="btn btn-success">Tambah Mobil</a>
             <a href="{% url 'car_service' %}" class="btn btn-warning">Tambah data Servis Mobil</a>
             </div>
@@ -50,23 +48,7 @@
                     </div>
                 </div>
                 </div>
-            </div>
-            <div class="col-md-4 mb-4 car-item grid-view d-none">
-                <form method="POST" action="{% url 'delete_car' car.id %}" style="position: absolute; top: 10px; right: 10px; z-index: 10;">
-                    {% csrf_token %}
-                    <button type="submit" onclick="return confirm('Yakin ingin menghapus mobil ini?')" class="btn btn-link text-danger p-0" style="font-size: 1.5rem;">&times;</button>
-                </form>
-                <a href="{% url 'detail_car' car.id %}" class="text-decoration-none text-dark" style="font-weight: normal; text-decoration: none;">
-                <div class="card">
-                <img src="{{ car.image.url }}" class="card-img-top" alt="{{ car.name }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ car.nama }}</h5>
-                    <p class="card-text">Harga: Rp.{{ car.harga }}</p>
-                    <p class="card-text">Tahun: {{ car.tahun }}</p>
-                    <p class="card-text">Model: {{ car.model }}</p>
-                </div>
-                </div>
-            </div>
+            </div>            
             {% endfor %}
         </div>
     </div>
