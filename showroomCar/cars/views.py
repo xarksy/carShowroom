@@ -111,7 +111,6 @@ def car_service(request, car_id):
     """
     # Fetch the car object using the provided car_id
     car = get_object_or_404(Cars, id=car_id)
-    
     if request.method == 'POST':
         form = ServiceHistoryForm(request.POST)
         if form.is_valid():
@@ -121,11 +120,15 @@ def car_service(request, car_id):
             service_history.save()  # Save the service history instance to the database
             return redirect('detail_car', car_id=car.id)  # Redirect to the car detail page after successful creation
     else:
-        form = ServiceHistoryForm()
+        # Pre-fill the form with the current car_id
+        form = ServiceHistoryForm(initial={'car': car.id})
+        for field in form.fields.values():
+            if field.widget.attrs.get('name') == 'car':
+                field.initial = car.id
 
     context = {
         'form': form,  # Pass the form to the template for rendering
-        # 'car': car  # Pass the car object to the template for rendering
+        'car': car  # Pass the car object to the template for rendering
     }
     # Render the form for managing service history
     return render(request, 'cars/service_history_form.html', context=context)
