@@ -86,12 +86,32 @@ def deleteCar(request, car_id):
     car.delete()
     return redirect('carList')
 
+def car_service_plain(request):
+    """
+    View to manage the service history of cars in the showroom.
+    """
+    if request.method == 'POST':
+        form = ServiceHistoryForm(request.POST)
+        if form.is_valid():
+            # Create a new service history entry
+            form.save()
+            return redirect('carList')  # Redirect to the car list page after successful creation
+    else:
+        form = ServiceHistoryForm()
+
+    context = {
+        'form': form  # Pass the form to the template for rendering
+    }
+    # Render the form for managing service history
+    return render(request, 'cars/service_history_form.html', context=context)
+
 def car_service(request, car_id):
     """
     View to manage the service history of a specific car.
     """
     # Fetch the car object using the provided car_id
     car = get_object_or_404(Cars, id=car_id)
+    
     if request.method == 'POST':
         form = ServiceHistoryForm(request.POST)
         if form.is_valid():
